@@ -8,5 +8,5 @@
   "includeResources": true,
   "executionType": "full",
   "testStage": "Unit Tests",
-  "failsafeArgLine": "@{sealightsArgLine} -Dsl.testStage=\\"Integration Tests\\""
+  "failsafeArgLine": "@{sealightsArgLine} -Dsl.testStage=\"Integration Tests\""
 }
