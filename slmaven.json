@@ -1,7 +1,7 @@
 {
   "tokenFile": "${WORKSPACE}/sealights/sltoken.txt",
   "createBuildSessionId": true,
-  "appName": "waltz",
+  "appName": "waltz-be",
   "branchName": "master",
   "buildName": "${BRANCH}_${BUILD_NUMBER}",
   "packagesIncluded": "*com.khartec.waltz.*",
