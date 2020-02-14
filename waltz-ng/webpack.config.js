@@ -40,6 +40,7 @@ module.exports = {
     resolve: {
         symlinks: false
     },
+    devtool: "eval-source-map",
     optimization: {
         runtimeChunk: "single",
         splitChunks: {
