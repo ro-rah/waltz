@@ -3,7 +3,7 @@
   "createBuildSessionId": true,
   "appName": "waltz-be",
   "branchName": "master",
-  "buildName": "${BRANCH}_${BUILD_NUMBER}",
+  "buildName": "${BUILD_NUMBER}",
   "packagesIncluded": "*com.khartec.waltz.*",
   "includeResources": true,
   "executionType": "full",
