@@ -21,5 +21,5 @@ const common = require("./webpack.config");
 
 module.exports = merge(common, {
     mode: "production",
-    devtool: "eval-source-map"
+    devtool: "eval-source-map",
 });
