@@ -64,7 +64,7 @@ public class LoadAll {
             new SurveyTemplateGenerator(),
 //            new SurveyRunGenerator(),
             new ChangeSetGenerator(),
-            new LicenceGenerator(),
+//            new LicenceGenerator(),
             new ChangeUnitGenerator()
     };
 
