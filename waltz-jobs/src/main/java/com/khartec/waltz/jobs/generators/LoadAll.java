@@ -56,7 +56,7 @@ public class LoadAll {
             new PhysicalFlowGenerator(),
             new PhysicalFlowParticipantGenerator(),
             new InvolvementGenerator(),
-            new DatabaseGenerator(),
+//            new DatabaseGenerator(),
             new AssetCostGenerator(),
             new ChangeLogGenerator(),
             new EndUserAppGenerator(),
