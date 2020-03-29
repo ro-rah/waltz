@@ -62,7 +62,7 @@ public class LoadAll {
             new EndUserAppGenerator(),
             new EndUserAppInvolvmentGenerator(),
             new SurveyTemplateGenerator(),
-            new SurveyRunGenerator(),
+//            new SurveyRunGenerator(),
             new ChangeSetGenerator(),
             new LicenceGenerator(),
             new ChangeUnitGenerator()
