@@ -1,0 +1,12 @@
+{
+  "tokenFile": "${WORKSPACE}/sealights/sltoken.txt",
+  "createBuildSessionId": true,
+  "appName": "waltz-be",
+  "branchName": "master",
+  "buildName": "${BUILD_NUMBER}",
+  "packagesIncluded": "*com.khartec.waltz.*",
+  "includeResources": true,
+  "executionType": "full",
+  "testStage": "Unit Tests",
+  "failsafeArgLine": "@{sealightsArgLine} -Dsl.testStage=\"Integration Tests\""
+}
