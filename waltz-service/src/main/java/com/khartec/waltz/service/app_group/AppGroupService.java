@@ -157,13 +157,21 @@ public class AppGroupService {
 
 
     public void subscribe(String userId, long groupId) {
-        audit(groupId, userId, "Subscribed to group", EntityKind.PERSON, Operation.ADD);
+        audit(groupId,
+                userId,
+                "Subscribed to group " + appGroupDao.getGroup(groupId).name(),
+                EntityKind.PERSON,
+                Operation.ADD);
         appGroupMemberDao.register(groupId, userId);
     }
 
 
     public void unsubscribe(String userId, long groupId) {
-        audit(groupId, userId, "Unsubscribed from group", EntityKind.PERSON, Operation.REMOVE);
+        audit(groupId,
+                userId,
+                "Unsubscribed from group" + appGroupDao.getGroup(groupId).name(),
+                EntityKind.PERSON,
+                Operation.REMOVE);
         appGroupMemberDao.unregister(groupId, userId);
     }
 
@@ -399,7 +407,7 @@ public class AppGroupService {
         return ImmutableEntityRelationship.builder()
                 .a(appGroupRef)
                 .b(changeInitiativeRef)
-                .relationship(RelationshipKind.RELATES_TO)
+                .relationship(RelationshipKind.RELATES_TO.name())
                 .lastUpdatedBy(username)
                 .provenance("waltz")
                 .build();
