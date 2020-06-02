@@ -8,5 +8,8 @@
   "includeResources": true,
   "executionType": "full",
   "testStage": "Unit Tests",
+  "sealightsJvmParams": {
+    "sl.featuresData.enableLineCoverage": "true"
+  },
   "failsafeArgLine": "@{sealightsArgLine} -Dsl.testStage=\"Integration Tests\""
 }
