@@ -22,7 +22,6 @@ import com.khartec.waltz.common.FunctionUtilities;
 import com.khartec.waltz.common.SetUtilities;
 import com.khartec.waltz.data.DBExecutorPoolInterface;
 import com.khartec.waltz.data.application.ApplicationIdSelectorFactory;
-import com.khartec.waltz.data.data_type.DataTypeIdSelectorFactory;
 import com.khartec.waltz.data.logical_flow.LogicalFlowDao;
 import com.khartec.waltz.data.logical_flow.LogicalFlowIdSelectorFactory;
 import com.khartec.waltz.data.logical_flow.LogicalFlowStatsDao;
@@ -47,7 +46,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Future;
 import java.util.function.Supplier;
@@ -79,7 +77,6 @@ public class LogicalFlowService {
 
     private final ApplicationIdSelectorFactory appIdSelectorFactory = new ApplicationIdSelectorFactory();
     private final LogicalFlowIdSelectorFactory logicalFlowIdSelectorFactory = new LogicalFlowIdSelectorFactory();
-    private final DataTypeIdSelectorFactory dataTypeIdSelectorFactory = new DataTypeIdSelectorFactory();
 
 
     @Autowired
@@ -250,11 +247,10 @@ public class LogicalFlowService {
 
         Set<EntityReference> affectedEntityRefs = SetUtilities.fromArray(logicalFlow.source(), logicalFlow.target());
 
+
         dataTypeUsageService.recalculateForApplications(affectedEntityRefs);
 
-        changeLogService.writeChangeLogEntries(logicalFlow, username,
-                "Removed : datatypes [" + getAssociatedDatatypeNamesAsCsv(flowId) + "]",
-                Operation.REMOVE);
+        changeLogService.writeChangeLogEntries(logicalFlow, username, "Removed", Operation.REMOVE);
 
         return deleted;
     }
@@ -273,7 +269,6 @@ public class LogicalFlowService {
             case ORG_UNIT:
             case PERSON:
             case SCENARIO:
-            case DATA_TYPE:
                 return calculateStatsForAppIdSelector(options);
             default:
                 throw new UnsupportedOperationException("Cannot calculate stats for selector kind: "+ options.entityReference().kind());
@@ -353,17 +348,5 @@ public class LogicalFlowService {
                         .rating(AuthoritativenessRating.DISCOURAGED)
                         .build())
                 .map(decoration -> logicalFlowDecoratorDao.addDecorators(newArrayList(decoration)));
-    }
-
-    private String getAssociatedDatatypeNamesAsCsv(Long flowId) {
-        IdSelectionOptions idSelectionOptions = IdSelectionOptions.mkOpts(
-                mkRef(LOGICAL_DATA_FLOW, flowId),
-                HierarchyQueryScope.EXACT);
-
-        return dataTypeService.findByIdSelector(dataTypeIdSelectorFactory.apply(idSelectionOptions))
-                .stream()
-                .map(EntityReference::name)
-                .map(Optional::get)
-                .collect(Collectors.joining(", "));
     }
 }

@@ -18,10 +18,10 @@
 
 import _ from "lodash";
 import {mkSelectionOptions} from "../../../common/selector-utils";
+import {determineStatMethod} from "../../logical-flow-utils";
 import {entityLifecycleStatus} from "../../../common/services/enums/entity-lifecycle-status";
 
 import template from "./logical-flows-tabgroup-section.html";
-import {CORE_API} from "../../../common/services/core-api-utils";
 
 
 const bindings = {
@@ -54,7 +54,7 @@ function controller(serviceBroker) {
 
         serviceBroker
             .loadViewData(
-                CORE_API.LogicalFlowStore.calculateStats,
+                determineStatMethod(vm.parentEntityRef.kind),
                 [ selector ])
             .then(r => {
                 vm.loadingStats = false;

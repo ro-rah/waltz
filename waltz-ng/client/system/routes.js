@@ -34,7 +34,6 @@ import InvolvementKindsView from "./involvement-kinds-view";
 import StaticPanelsView from "./static-panels-view";
 import RatingSchemesView from "./rating-schemes-view";
 import EudaListView from "./euda-list-view";
-import RelationshipKindsView from "./relationship-kinds-view";
 
 const listViewState = {
     url: "/list",
@@ -84,6 +83,7 @@ const involvementKindsState = {
 };
 
 
+
 const staticPanelsState = {
     url: "/static-panels",
     views: { "content@": StaticPanelsView }
@@ -102,12 +102,6 @@ const eudaListState = {
 };
 
 
-const relationshipKindsState = {
-    url: "/relationship-kinds",
-    views: { "content@": RelationshipKindsView }
-};
-
-
 function setupRoutes($stateProvider) {
     $stateProvider
         .state("main.system", baseState)
@@ -121,7 +115,6 @@ function setupRoutes($stateProvider) {
         .state("main.system.static-panels", staticPanelsState)
         .state("main.system.rating-schemes", ratingSchemesState)
         .state("main.system.euda-list", eudaListState)
-        .state("main.system.relationship-kinds", relationshipKindsState)
         .state("main.system.recalculate", recalculateState);
 }
 
@@ -130,3 +123,4 @@ setupRoutes.$inject = ["$stateProvider"];
 
 
 export default setupRoutes;
+

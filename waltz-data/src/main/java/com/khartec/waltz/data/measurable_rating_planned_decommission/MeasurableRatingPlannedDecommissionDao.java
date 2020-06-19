@@ -64,7 +64,7 @@ public class MeasurableRatingPlannedDecommissionDao {
                         r.getEntityId(),
                         record.get(NAME_FIELD)))
                 .measurableId(r.getMeasurableId())
-                .plannedDecommissionDate(r.getPlannedDecommissionDate().toLocalDate())
+                .plannedDecommissionDate(toLocalDateTime(r.getPlannedDecommissionDate()))
                 .createdAt(toLocalDateTime(r.getCreatedAt()))
                 .createdBy(r.getCreatedBy())
                 .lastUpdatedAt(toLocalDateTime(r.getUpdatedAt()))

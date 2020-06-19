@@ -19,77 +19,28 @@
 
 import template from './related-measurable-item-view.html';
 import {initialiseData} from "../../../common/index";
-import * as _ from "lodash";
-import {CORE_API} from "../../../common/services/core-api-utils";
 
 
 const bindings = {
-    items: '<',
-    relationshipKinds: '<',
-    onSelect: '<',
+    item: '<',
     onDismiss: '<',
     onEdit: '<',
-    onRemove: '<',
-    onAdd: '<'
+    onRemove: '<'
 };
 
 
 const initialState = {
-    selectedItem: null,
-    displayInfo: false,
-    relationshipKinds: [],
+    item: null,
     onDismiss: () => console.log('default on dismiss'),
     onEdit: () => console.log('default on edit'),
-    onRemove: () => console.log('default on remove'),
-    onSelect: () => console.log('default on select'),
-    onAdd: () => console.log('default on add')
+    onRemove: () => console.log('default on remove')
 };
 
 
 
-function controller(serviceBroker) {
-    const vm = initialiseData(this, initialState);
-
-    function enrichItemsWithRelationshipKind() {
-        vm.list = _.map(vm.items, i => Object.assign({},
-            i,
-            {relationshipKind: _.find(vm.allRelationshipKinds,
-                    {'code': i.relationship.relationship,
-                        'kindA': i.a.kind,
-                        'kindB': i.b.kind
-                    })}));
-    }
-
-    vm.$onInit = () => {
-        serviceBroker.loadAppData(CORE_API.RelationshipKindStore.findAll)
-            .then(r => vm.allRelationshipKinds = r.data)
-            .then(() => enrichItemsWithRelationshipKind())
-    };
-
-    vm.$onChanges = (c) => {
-        if(c.items){
-            vm.selectedItem = null;
-            vm.counterpart = _.first(_.map(vm.items, i => (i.outbound) ? i.b : i.a));
-            enrichItemsWithRelationshipKind();
-        }
-    };
-
-    vm.selectItem = (item) => {
-        vm.selectedItem = item;
-        vm.onSelect(item);
-    };
-
-    vm.onAddItem = () => {
-        vm.selectedItem = null;
-        vm.onAdd();
-    };
-
+function controller() {
+    initialiseData(this, initialState);
 }
-
-
-controller.$inject = [
-    "ServiceBroker"
-];
 
 
 const component = {

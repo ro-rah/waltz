@@ -46,7 +46,7 @@ public class EntityRelationshipUtilities {
             return Optional.of(ImmutableEntityRelationshipKey.builder()
                     .a(entityA)
                     .b(entityB)
-                    .relationshipKind(relationshipKind.name())
+                    .relationshipKind(relationshipKind)
                     .build());
         }
 
@@ -60,13 +60,13 @@ public class EntityRelationshipUtilities {
             return Optional.of(ImmutableEntityRelationshipKey.builder()
                     .a(entityA)
                     .b(entityB)
-                    .relationshipKind(relationshipKind.name())
+                    .relationshipKind(relationshipKind)
                     .build());
         } else if (allowedEntityKinds.contains(opposite)){
             return Optional.of(ImmutableEntityRelationshipKey.builder()
                     .a(entityB)
                     .b(entityA)
-                    .relationshipKind(relationshipKind.name())
+                    .relationshipKind(relationshipKind)
                     .build());
         } else {
             return Optional.empty();

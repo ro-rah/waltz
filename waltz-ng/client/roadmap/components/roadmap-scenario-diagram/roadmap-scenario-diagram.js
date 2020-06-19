@@ -18,10 +18,7 @@
 
 import {CORE_API} from "../../../common/services/core-api-utils";
 import _ from "lodash";
-import {
-    getChangeScenarioCommand,
-    prepareData
-} from "../../../scenario/components/scenario-diagram/scenario-diagram-data-utils";
+import {prepareData} from "../../../scenario/components/scenario-diagram/scenario-diagram-data-utils";
 import {initialiseData} from "../../../common";
 import {event, select, selectAll} from "d3-selection";
 import roles from "../../../user/system-roles";
@@ -244,16 +241,16 @@ function controller($q,
     const removeAction = mkAction(
         "Remove",
         (elm, d) => {
-            const removeRatingScenarioCommand = getChangeScenarioCommand(
-                vm.scenarioDefn,
+            const args = [
+                vm.scenarioDefn.scenario.id,
                 d.node.id,
                 d.domainCoordinates.column.id,
                 d.domainCoordinates.row.id
-            );
+            ];
             serviceBroker
                 .execute(
                     CORE_API.ScenarioStore.removeRating,
-                    [removeRatingScenarioCommand])
+                    args)
                 .then(() => notification.success("Item removed"))
                 .then(() => reload());
         });
@@ -489,17 +486,18 @@ function controller($q,
     vm.onAddApplication = (app) => {
         const lastOrDefaultRating = getLastOrDefaultRating(app);
 
-        const addRatingScenarioCommand = getChangeScenarioCommand(
-            vm.scenarioDefn,
+        const args = [
+            vm.scenarioDefn.scenario.id,
             app.id,
             vm.selectedColumn.id,
             vm.selectedRow.id,
-            lastOrDefaultRating);
+            lastOrDefaultRating
+        ];
 
         serviceBroker
             .execute(
                 CORE_API.ScenarioStore.addRating,
-                [addRatingScenarioCommand])
+                args)
             .then(() => {
                 _.remove(vm.dialog.applicationPickList, a => a.id === app.id);
                 reload();
@@ -507,20 +505,20 @@ function controller($q,
             });
     };
 
-    vm.onSaveCell =(item, column, row, workingState, currentRating) => {
-        const changeScenarioCommand = getChangeScenarioCommand(
-            vm.scenarioDefn,
+    vm.onSaveCell =(item, column, row, workingState) => {
+        const args = [
+            vm.scenarioDefn.scenario.id,
             item.id,
             column.id,
             row.id,
             workingState.rating,
-            workingState.comment,
-            currentRating);
+            workingState.comment
+        ];
 
         serviceBroker
             .execute(
                 CORE_API.ScenarioStore.updateRating,
-                [changeScenarioCommand])
+                args)
             .then(() => {
                 reload();
                 notification.success("Edited rating");

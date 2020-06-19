@@ -56,16 +56,14 @@ function controller(serviceBroker,
     const vm = initialiseData(this, initialState);
 
     const loadTopAppCosts = () => {
-        vm.selectionOptions = mkSelectionOptions(
-            vm.parentEntityRef,
-            undefined,
-            [entityLifecycleStatus.ACTIVE.key],
-            vm.filters);
-
         serviceBroker
             .loadViewData(
                 CORE_API.AssetCostStore.findTopAppCostsByAppIdSelector,
-                [ vm.selectionOptions ])
+                [ mkSelectionOptions(
+                    vm.parentEntityRef,
+                    undefined,
+                    [entityLifecycleStatus.ACTIVE.key],
+                    vm.filters) ])
             .then(r => vm.topCosts = r.data);
     };
 

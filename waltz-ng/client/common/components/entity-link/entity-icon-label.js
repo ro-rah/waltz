@@ -56,15 +56,6 @@ const entityLoaders = {
             }
         ])
     },
-    "MEASURABLE": {
-        method: CORE_API.MeasurableStore.getById,
-        mkProps: (measurable, displayNameService) => ([
-            {
-                name: "External Id",
-                value: measurable.externalId || "-"
-            }
-        ])
-    },
     "APPLICATION": {
         method: CORE_API.ApplicationStore.getById,
         mkProps: (app, displayNameService) => ([
@@ -269,11 +260,11 @@ function controller(displayNameService, serviceBroker, settingsService) {
         if (! vm.entityRef) return;
         if (_.has(entityLoaders, vm.entityRef.kind)) {
             vm.popoverTemplate = "weil-popover-custom";
-            vm.trigger = "mouseenter click";
+            vm.trigger = "mouseenter";
         } else {
             vm.popoverTemplate = "weil-popover-basic";
             vm.trigger = vm.entityRef.description || vm.entityRef.lifecyclePhase
-                ? "mouseenter click"
+                ? "mouseenter"
                 : "none";
         }
     };

@@ -31,5 +31,5 @@ import org.immutables.value.Value;
  * Use in conjunction with EntityRelationshipKey
  */
 public abstract class UpdateEntityRelationshipParams implements DescriptionProvider {
-    public abstract String relationshipKind();
+    public abstract RelationshipKind relationshipKind();
 }

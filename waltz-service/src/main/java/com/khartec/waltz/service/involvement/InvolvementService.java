@@ -106,10 +106,6 @@ public class InvolvementService {
         return involvementDao.findByEmployeeId(employeeId);
     }
 
-    public List<Involvement> findAllByEmployeeId(String employeeId) {
-        return involvementDao.findAllByEmployeeId(employeeId);
-    }
-
 
     public List<Person> findPeopleByEntityReference(EntityReference ref) {
         checkNotNull(ref, "ref cannot be null");
@@ -218,4 +214,5 @@ public class InvolvementService {
                 .stream()
                 .collect(Collectors.toMap(ik -> ik.id().get(), NameProvider::name));
     }
+
 }

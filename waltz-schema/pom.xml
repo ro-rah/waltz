@@ -256,9 +256,6 @@
 
                     <!-- Generator parameters -->
                     <generator>
-                        <generate>
-                            <javaTimeTypes>false</javaTimeTypes>
-                        </generate>
                         <database>
                             <name>${jooq.database}</name>
                             <inputSchema>${database.schema}</inputSchema>

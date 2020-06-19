@@ -25,6 +25,7 @@ import com.khartec.waltz.model.entity_relationship.*;
 import com.khartec.waltz.service.entity_relationship.EntityRelationshipService;
 import com.khartec.waltz.web.DatumRoute;
 import com.khartec.waltz.web.ListRoute;
+import com.khartec.waltz.web.WebUtilities;
 import com.khartec.waltz.web.endpoints.Endpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,8 +36,12 @@ import java.util.stream.Collectors;
 
 import static com.khartec.waltz.common.Checks.checkNotNull;
 import static com.khartec.waltz.common.EnumUtilities.readEnum;
-import static com.khartec.waltz.web.WebUtilities.*;
-import static com.khartec.waltz.web.endpoints.EndpointUtilities.*;
+import static com.khartec.waltz.web.WebUtilities.getEntityReference;
+import static com.khartec.waltz.web.WebUtilities.getUsername;
+import static com.khartec.waltz.web.WebUtilities.mkPath;
+import static com.khartec.waltz.web.endpoints.EndpointUtilities.deleteForDatum;
+import static com.khartec.waltz.web.endpoints.EndpointUtilities.getForList;
+import static com.khartec.waltz.web.endpoints.EndpointUtilities.postForDatum;
 
 @Service
 public class EntityRelationshipEndpoint implements Endpoint {
@@ -101,8 +106,12 @@ public class EntityRelationshipEndpoint implements Endpoint {
         postForDatum(exactMatchPath, createRelationshipRoute);
     }
 
-    private String readRelationshipKind(Request req) {
-        String relationshipKind = req.params("relationshipKind");
+    private RelationshipKind readRelationshipKind(Request req) {
+        RelationshipKind relationshipKind = WebUtilities.readEnum(
+                req,
+                "relationshipKind",
+                RelationshipKind.class,
+                (s) -> null);
         checkNotNull(relationshipKind, "relationshipKind cannot be parsed");
         return relationshipKind;
     }

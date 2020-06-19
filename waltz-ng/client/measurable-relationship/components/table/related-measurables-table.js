@@ -22,8 +22,8 @@ import template from "./related-measurables-table.html";
 import {initialiseData} from "../../../common/index";
 import {sameRef} from "../../../common/entity-utils";
 import {downloadTextFile} from "../../../common/file-utils";
-import {mkEntityLinkGridCell} from "../../../common/grid-utils";
-import {CORE_API} from "../../../common/services/core-api-utils";
+import {getEnumName} from "../../../common/services/enums/index";
+import {relationshipKind} from "../../../common/services/enums/relationship-kind";
 
 
 const bindings = {
@@ -34,16 +34,20 @@ const bindings = {
 
 
 const columnDefs = [
-    mkEntityLinkGridCell("From", "a"),
     {
+        field: "a.name",
+        name: "From"
+    }, {
         field: "a.type",
         name: "(From Type)"
     }, {
-        field: "relationships",
-        name: "Relationships",
-    },
-    mkEntityLinkGridCell("To", "b"),
-    {
+        field: "relationship.relationship",
+        name: "Relationship",
+        cellFilter: "toDisplayName:'relationshipKind'"
+    }, {
+        field: "b.name",
+        name: "To"
+    }, {
         field: "b.type",
         name: "(To Type)"
     }
@@ -56,13 +60,13 @@ const initialState = {
 };
 
 
-function mkExportData(rows = [], relKindsByCode) {
+function mkExportData(rows = []) {
     const columnNames = [[
         "From",
         "From type",
         "To",
         "To type",
-        "Relationship Kind",
+        "Relationship",
         "Description",
         "Last Updated At",
         "Last Updated By"
@@ -73,7 +77,7 @@ function mkExportData(rows = [], relKindsByCode) {
         r.a.type,
         r.b.name,
         r.b.type,
-        _.get(relKindsByCode, r.relationship.relationship).name,
+        getEnumName(relationshipKind, r.relationship.relationship),
         r.relationship.description,
         r.relationship.lastUpdatedAt,
         r.relationship.lastUpdatedBy
@@ -83,29 +87,9 @@ function mkExportData(rows = [], relKindsByCode) {
 }
 
 
-function controller(serviceBroker) {
+
+function controller() {
     const vm = initialiseData(this, initialState);
-
-    vm.loadData = () => {
-        const collectedRels = _.map(vm.rows, r => {
-
-            const relatedKinds = _.chain(vm.rows)
-                .filter(d => d.a.id === r.a.id && d.b.id === r.b.id)
-                .map(rel => _.get(vm.relationshipKindsByCode, rel.relationship.relationship).name)
-                .join(", ")
-                .value();
-
-            return Object.assign("", {a: r.a, b: r.b, relationships: relatedKinds});
-        });
-
-        vm.data = _.uniqBy(collectedRels, r => JSON.stringify([r.a, r.b, r.relationships]));
-    };
-
-    vm.$onInit = () => {
-        serviceBroker.loadAppData(CORE_API.RelationshipKindStore.findAll)
-            .then(r => vm.relationshipKindsByCode = _.keyBy(r.data, d => d.code))
-            .then(() => vm.loadData())
-    };
 
     vm.isSelected = (row) => {
         if (vm.selectedRow) {
@@ -117,22 +101,12 @@ function controller(serviceBroker) {
         }
     };
 
-    vm.$onChanges = (c) => {
-        if (c.rows){
-           vm.loadData();
-        }
-    };
 
     vm.export = () => {
-        const data = mkExportData(vm.rows, vm.relationshipKindsByCode);
+        const data = mkExportData(vm.rows);
         downloadTextFile(data, ",", "related_viewpoints.csv");
     };
 }
-
-
-controller.$inject = [
-    "ServiceBroker"
-];
 
 
 const component = {

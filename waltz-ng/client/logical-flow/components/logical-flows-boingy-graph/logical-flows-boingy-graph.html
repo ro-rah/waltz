@@ -29,14 +29,12 @@
         <div>
 
             <waltz-logical-flow-diagram data="$ctrl.filteredFlowData"
-                                        tweakers="$ctrl.graphTweakers"
-                                        filter-options="$ctrl.filterOptions">
+                                        tweakers="$ctrl.graphTweakers">
 
                 <filter-control>
                     <waltz-flow-filter-options visible="$ctrl.optionsVisible"
                                                on-change="$ctrl.filterChanged"
-                                               used-types="$ctrl.usedDataTypes"
-                                               used-tags="$ctrl.tags">
+                                               used-types="$ctrl.usedDataTypes">
                     </waltz-flow-filter-options>
                 </filter-control>
 

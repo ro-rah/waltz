@@ -19,14 +19,12 @@
 package com.khartec.waltz.data.actor;
 
 import com.khartec.waltz.common.DateTimeUtilities;
-import com.khartec.waltz.model.EntityKind;
 import com.khartec.waltz.model.UserTimestamp;
 import com.khartec.waltz.model.actor.Actor;
 import com.khartec.waltz.model.actor.ActorChangeCommand;
 import com.khartec.waltz.model.actor.ActorCreateCommand;
 import com.khartec.waltz.model.actor.ImmutableActor;
 import com.khartec.waltz.schema.tables.records.ActorRecord;
-import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.Record;
 import org.jooq.RecordMapper;
@@ -42,7 +40,6 @@ import java.util.function.Function;
 import static com.khartec.waltz.common.Checks.checkNotNull;
 import static com.khartec.waltz.common.Checks.checkOptionalIsPresent;
 import static com.khartec.waltz.common.DateTimeUtilities.toLocalDateTime;
-import static com.khartec.waltz.schema.Tables.LOGICAL_FLOW;
 import static com.khartec.waltz.schema.tables.Actor.ACTOR;
 import static com.khartec.waltz.schema.tables.Involvement.INVOLVEMENT;
 
@@ -152,24 +149,9 @@ public class ActorDao {
 
 
     public boolean deleteIfNotUsed(long id) {
-        Condition notMentionedInFlows = DSL
-                .notExists(DSL
-                        .selectFrom(LOGICAL_FLOW)
-                        .where(LOGICAL_FLOW.SOURCE_ENTITY_ID.eq(id)
-                            .and(LOGICAL_FLOW.SOURCE_ENTITY_KIND.eq(EntityKind.ACTOR.name()))
-                            .or(LOGICAL_FLOW.TARGET_ENTITY_ID.eq(id)
-                                    .and(LOGICAL_FLOW.SOURCE_ENTITY_KIND.eq(EntityKind.ACTOR.name())))));
-
-        Condition notMentionedInInvolvements = DSL
-                .notExists(DSL
-                        .selectFrom(INVOLVEMENT)
-                        .where(INVOLVEMENT.KIND_ID.eq(id)));
-
-        return dsl
-                .deleteFrom(ACTOR)
+        return dsl.deleteFrom(ACTOR)
                 .where(ACTOR.ID.eq(id))
-                .and(notMentionedInInvolvements)
-                .and(notMentionedInFlows)
+                .and(DSL.notExists(DSL.selectFrom(INVOLVEMENT).where(INVOLVEMENT.KIND_ID.eq(id))))
                 .execute() > 0;
     }
 

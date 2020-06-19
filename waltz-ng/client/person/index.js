@@ -17,7 +17,7 @@
  */
 
 import angular from "angular";
-import {registerComponents, registerStore} from "../common/module-utils";
+import { registerComponents, registerStore } from "../common/module-utils";
 
 import PersonStore from "./services/person-store";
 
@@ -27,7 +27,6 @@ import PersonAppsSection from "./components/person-apps-section/person-apps-sect
 import PersonHierarchySection from "./components/person-hierarchy-section/person-hierarchy-section";
 import PersonLink from "./components/person-link/person-link";
 import PersonList from "./components/person-list/person-list";
-import PersonAppsTable from "./components/person-apps-table/person-apps-table"
 
 import Routes from "./routes";
 
@@ -46,8 +45,7 @@ export default () => {
         PersonHierarchySection,
         PersonSummary,
         PersonLink,
-        PersonList,
-        PersonAppsTable
+        PersonList
     ]);
 
     return module.name;

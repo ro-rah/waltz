@@ -19,16 +19,12 @@
 package com.khartec.waltz.service.tag;
 
 import com.khartec.waltz.common.SetUtilities;
-import com.khartec.waltz.data.GenericSelectorFactory;
 import com.khartec.waltz.data.tag.TagDao;
 import com.khartec.waltz.model.EntityKind;
 import com.khartec.waltz.model.EntityReference;
-import com.khartec.waltz.model.IdSelectionOptions;
 import com.khartec.waltz.model.Operation;
 import com.khartec.waltz.model.tag.Tag;
 import com.khartec.waltz.service.changelog.ChangeLogService;
-import org.jooq.Record1;
-import org.jooq.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +45,7 @@ public class TagService {
 
     private final TagDao tagDao;
     private final ChangeLogService changeLogService;
-    private final GenericSelectorFactory genericSelectorFactory = new GenericSelectorFactory();
+
 
     @Autowired
     public TagService(TagDao tagDao, ChangeLogService changeLogService) {
@@ -65,18 +61,6 @@ public class TagService {
 
     public List<Tag> findTagsForEntityKind(EntityKind entityKind) {
         return tagDao.findTagsForEntityKind(entityKind);
-    }
-
-
-    public List<Tag> findTagsForEntityKindAndTargetSelector(EntityKind targetEntityKind,
-                                                            IdSelectionOptions targetEntityIdSelectionOptions) {
-        checkNotNull(targetEntityKind, "targetEntityKind cannot be null");
-        checkNotNull(targetEntityIdSelectionOptions, "targetEntityIdSelectionOptions cannot be null");
-
-        Select<Record1<Long>> targetEntityIdSelector = genericSelectorFactory
-                .applyForKind(targetEntityKind, targetEntityIdSelectionOptions)
-                .selector();
-        return tagDao.findTagsForEntityKindAndTargetSelector(targetEntityKind, targetEntityIdSelector);
     }
 
 

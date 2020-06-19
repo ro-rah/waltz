@@ -59,7 +59,7 @@ public class RatingSchemeDAO {
                 .build();
 
 
-    public static final RecordMapper<RatingSchemeRecord, RatingScheme> TO_SCHEME_MAPPER = r ->
+    private static final RecordMapper<RatingSchemeRecord, RatingScheme> TO_SCHEME_MAPPER = r ->
         ImmutableRatingScheme.builder()
                 .id(r.getId())
                 .name(r.getName())
@@ -121,5 +121,6 @@ public class RatingSchemeDAO {
                 .where(RATING_SCHEME_ITEM.ID.eq(id))
                 .fetchOne(TO_ITEM_MAPPER);
     }
+
 
 }

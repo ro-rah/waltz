@@ -19,7 +19,6 @@
 package com.khartec.waltz.model.application;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.khartec.waltz.model.*;
@@ -66,7 +65,6 @@ public abstract class Application implements
 
     @Override
     @Value.Derived
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     public Optional<String> externalId() { return assetCode(); }
 
 

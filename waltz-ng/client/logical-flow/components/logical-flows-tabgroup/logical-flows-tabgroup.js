@@ -19,6 +19,7 @@
 import _ from "lodash";
 import {CORE_API} from "../../../common/services/core-api-utils";
 import {mkSelectionOptions} from "../../../common/selector-utils";
+import {determineStatMethod} from "../../logical-flow-utils";
 import {entityLifecycleStatus} from "../../../common/services/enums/entity-lifecycle-status";
 
 import template from "./logical-flows-tabgroup.html";
@@ -72,7 +73,7 @@ function controller($q,
         vm.loadingStats = true;
         serviceBroker
             .loadViewData(
-                CORE_API.LogicalFlowStore.calculateStats,
+                determineStatMethod(vm.parentEntityRef.kind),
                 [ vm.selector ])
             .then(r => {
                 vm.loadingStats = false;

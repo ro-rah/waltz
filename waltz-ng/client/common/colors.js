@@ -133,9 +133,7 @@ const variableColorList = [
             "LATE",
             "BAD",
             "END_OF_LIFE",
-            "NON PAAS",
-            "HIGH RISK",
-            "HIGH"
+            "NON PAAS"
         ]
     }, {
         color: green,
@@ -155,9 +153,7 @@ const variableColorList = [
             "GREEN",
             "GOOD",
             "NOT_END_OF_LIFE",
-            "PAAS",
-            "LOW RISK",
-            "LOW"
+            "PAAS"
         ]
     }, {
         color: amber,
@@ -174,9 +170,7 @@ const variableColorList = [
             "AMBER",
             "YELLOW",
             "OKAY",
-            "PREPROD",
-            "MEDIUM RISK",
-            "MEDIUM"
+            "PREPROD"
         ]
     }, {
         color: blue,
@@ -188,13 +182,21 @@ const variableColorList = [
             "B",
             "NOT_STARTED",
             "BLUE",
+            "MEDIUM",
             "VIRTUAL",
             "DR"
         ]
     }, {
+        color: blue.darker(),
+        keys: ["HIGH"]
+    }, {
+        color: blue.brighter(),
+        keys: ["LOW"]
+    }, {
         color: purple,
         keys: ["OTHER", "UAT"]
     }, {
+    },{
         color: gold,
         keys: [
             "PROD",
