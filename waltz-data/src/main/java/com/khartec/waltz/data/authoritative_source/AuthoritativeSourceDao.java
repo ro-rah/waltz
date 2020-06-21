@@ -378,6 +378,8 @@ public class AuthoritativeSourceDao {
                 AuthoritativenessRating.DISCOURAGED.name(),
                 AuthoritativenessRating.NO_OPINION.name());
 
+        System.out.print("Code change for QR's");
+
         Condition commonSelectionCriteria = flowNotRemoved
                 .and(consumerNotRemoved)
                 .and(supplierNotRemoved)
