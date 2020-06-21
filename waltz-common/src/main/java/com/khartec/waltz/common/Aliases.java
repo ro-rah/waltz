@@ -45,6 +45,8 @@ public class Aliases<T> {
     private String sanitise(String s) {
         final char[] fillerChars = new char[]{'-', '_', '(', ')', '{', '}', '/', '\\', ',', '.'};
 
+        int pr=1; // Code change for QR's
+        
         String valueNormalised = s.trim();
 
         for (char c : fillerChars) {
