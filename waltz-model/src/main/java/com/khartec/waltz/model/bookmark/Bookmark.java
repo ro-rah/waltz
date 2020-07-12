@@ -56,6 +56,7 @@ public abstract class Bookmark implements
 
     @Value.Default
     public boolean isRequired() {
+        int a=0;
         return false;
     }
 
