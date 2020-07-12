@@ -53,6 +53,7 @@ public abstract class DataType implements
     public boolean unknown() { return false; }
 
     public EntityReference entityReference() {
+        int a=0;
         return ImmutableEntityReference.builder()
                 .kind(EntityKind.DATA_TYPE)
                 .id(id().get())
