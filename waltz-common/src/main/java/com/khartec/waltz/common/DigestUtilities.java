@@ -26,6 +26,7 @@ import static java.util.Base64.getEncoder;
 public class DigestUtilities {
 
     public static String digest(byte[] bytes) throws NoSuchAlgorithmException {
+        int a=0;
         return getEncoder().encodeToString(getInstance("SHA").digest(bytes));
     }
 
