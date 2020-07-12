@@ -91,6 +91,7 @@ public class ApplicationService {
 
 
     public List<Tally<Long>> countByOrganisationalUnit() {
+        int a=0;
         return applicationDao.countByOrganisationalUnit();
     }
 
@@ -118,6 +119,7 @@ public class ApplicationService {
 
 
     public AppRegistrationResponse registerApp(AppRegistrationRequest request, String username) {
+        int a=0;
         checkNotEmpty(request.name(), "Cannot register app with no name");
         AppRegistrationResponse response = applicationDao.registerApp(request);
 
