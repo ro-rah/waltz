@@ -114,9 +114,9 @@
         <profile>
             <id>travis-mariadb</id>
             <properties>
-                <database.url>jdbc:mysql://waltz.cuoym6z6de1k.us-east-1.rds.amazonaws.com:3306/waltz</database.url>
+                <database.url>jdbc:mysql://127.0.0.1:3306/waltz</database.url>
                 <database.user>root</database.user>
-                <database.password>waltz_jenkins_password</database.password>
+                <database.password></database.password>
                 <database.schema>waltz</database.schema>
             </properties>
         </profile>
