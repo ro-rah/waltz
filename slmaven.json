@@ -1,9 +1,9 @@
 {
-  "tokenFile": "${WORKSPACE}/sealights/sltoken.txt",
+  "tokenFile": "${WORKSPACE}/sltoken.txt",
   "createBuildSessionId": true,
-  "appName": "waltz-be",
-  "branchName": "master",
-  "buildName": "1.${BUILD_NUMBER}",
+"appName": "${JOB_NAME}",
+  "branchName": "${BRANCH}",
+  "buildName": "${BUILD_NUMBER}",
   "packagesIncluded": "*com.khartec.waltz.*",
   "includeResources": true,
   "executionType": "full",
