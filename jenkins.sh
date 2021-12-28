@@ -54,13 +54,19 @@ npm i slnodejs
 echo 'SeaLights Node.js agent - Scanning and Instrumentation of a Front-End app'
 ./node_modules/.bin/slnodejs build --tokenfile ${WORKSPACE}/sltoken.txt --buildsessionidfile buildSessionId --labid ${LAB_ID} --instrumentForBrowsers --workspacepath ${WORKSPACE}/waltz-ng/dist/ --outputpath ${WORKSPACE}/waltz-ng/sl_dist --scm git 
 
+pwd
 echo '-SeaLights Node.js agent - Deploying Instrumented code'
-sh 'docker image build -t waltz .'
-            
-sh '''
+docker image build -t waltz .
+pwd
 docker stop waltz || true && docker rm waltz || true
 docker container run -it --publish 8081:8080 -d --name=waltz --env JAVA_OPTS="-javaagent:/root/sealights/sl-test-listener.jar -Dsl.labId=${LAB_ID}" waltz
 sleep 30
 docker exec waltz sh -c 'mv /usr/local/tomcat/webapps/waltz-web/WEB-INF/classes/static /usr/local/tomcat/webapps/waltz-web/WEB-INF/classes/static_bak'
 docker exec waltz sh -c 'cp -r /root/sealights/sl_dist /usr/local/tomcat/webapps/waltz-web/WEB-INF/classes/static'
-'''
+
+echo 'Start Testing FE'
+./node_modules/.bin/slnodejs start --tokenfile ${WORKSPACE}/sltoken.txt --labid ${LAB_ID} --teststage "Unit Tests"
+docker exec waltz sh -c 'npm run test'
+echo 'Upload test results?'
+echo 'End Testing FE'
+./node_modules/.bin/slnodejs end --tokenfile ${WORKSPACE}/sltoken.txt --labid ${LAB_ID}
