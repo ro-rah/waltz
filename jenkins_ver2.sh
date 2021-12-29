@@ -66,11 +66,32 @@ echo 'Start Testing FE'
 
 echo 'Customer Portion: Run FE unit tests'
 ./node_modules/.bin/nyc --reporter=json ./node_modules/.bin/mocha --compilers js:babel-core/register --recursive --reporter mocha-junit-reporter
+#./node_modules/.bin/slnodejs mocha --tokenfile ${WORKSPACE}/sltoken.txt --buildsessionidfile buildSessionId --teststage "Unit Tests" --useslnode2 -- --recursive test
 
 echo 'TBD: Upload unit tests results'
+#for uploading coverage:
 ./node_modules/.bin/slnodejs nycReport --tokenfile ${WORKSPACE}/sltoken.txt --buildsessionidfile buildSessionId
+#for uploading tests, later in deployment I will have a SL agent running that will send the tests to sealights.
 ./node_modules/.bin/slnodejs uploadReports --tokenfile ${WORKSPACE}/sltoken.txt --buildsessionidfile buildSessionId --reportFile test-results.xml
 
 echo 'End Testing FE'
 #./node_modules/.bin/slnodejs end --tokenfile ${WORKSPACE}/sealights/sltoken.txt --buildsessionidfile buildSessionId
 ./node_modules/.bin/slnodejs end --tokenfile ${WORKSPACE}/sltoken.txt --buildsessionidfile buildSessionId
+
+
+
+#deploy application
+cd ${WORKSPACE}
+echo '-SeaLights Node.js agent - Deploying Instrumented code'
+docker image build -t waltz .
+docker stop waltz || true && docker rm waltz || true
+docker container run -it --publish 8081:8080 -d --name=waltz --env JAVA_OPTS="-javaagent:/root/sealights/sl-test-listener.jar -Dsl.labId=${LAB_ID}" waltz
+sleep 30
+docker exec waltz sh -c 'mv /usr/local/tomcat/webapps/waltz-web/WEB-INF/classes/static /usr/local/tomcat/webapps/waltz-web/WEB-INF/classes/static_bak'
+docker exec waltz sh -c 'cp -r /root/sealights/sl_dist /usr/local/tomcat/webapps/waltz-web/WEB-INF/classes/static'
+
+
+#install chrome extension - install the token
+#https://sealights.atlassian.net/wiki/spaces/SUP/pages/7869463/Installation+and+Setup+for+SeaLights+Chrome+extension
+
+#run manual tests
