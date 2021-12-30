@@ -18,6 +18,7 @@ echo '{
   "appName": "'${JOB_NAME}'",
   "branchName": "'${BRANCH}'",
   "buildName": "'${BUILD_NUMBER}'",
+  "labId": "'${LAB_ID}'",
   "packagesIncluded": "*com.khartec.waltz.*",
   "includeResources": true,
   "executionType": "full",
@@ -93,5 +94,4 @@ docker exec waltz sh -c 'cp -r /root/sealights/sl_dist /usr/local/tomcat/webapps
 
 #install chrome extension - install the token
 #https://sealights.atlassian.net/wiki/spaces/SUP/pages/7869463/Installation+and+Setup+for+SeaLights+Chrome+extension
-
 #run manual tests
