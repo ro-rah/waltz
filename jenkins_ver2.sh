@@ -18,7 +18,6 @@ echo '{
   "appName": "'${JOB_NAME}'",
   "branchName": "'${BRANCH}'",
   "buildName": "'${BUILD_NUMBER}'",
-  "labId": "'${LAB_ID}'",
   "packagesIncluded": "*com.khartec.waltz.*",
   "includeResources": true,
   "executionType": "full",
@@ -67,7 +66,7 @@ echo 'Start Testing FE'
 
 echo 'Customer Portion: Run FE unit tests'
 ./node_modules/.bin/nyc --reporter=json ./node_modules/.bin/mocha --compilers js:babel-core/register --recursive --reporter mocha-junit-reporter
-#./node_modules/.bin/slnodejs mocha --tokenfile ${WORKSPACE}/sltoken.txt --buildsessionidfile buildSessionId --teststage "Unit Tests" --useslnode2 -- --recursive test
+#./node_modules/.bin/slnodejs mocha --tokenfile ${WORKSPACE}/sltoken.txt --buildsessionidfile buildSessionId --teststage "Unit Tests" --useslnode2 -- --recursive
 
 echo 'TBD: Upload unit tests results'
 #for uploading coverage:
@@ -79,19 +78,43 @@ echo 'End Testing FE'
 #./node_modules/.bin/slnodejs end --tokenfile ${WORKSPACE}/sealights/sltoken.txt --buildsessionidfile buildSessionId
 ./node_modules/.bin/slnodejs end --tokenfile ${WORKSPACE}/sltoken.txt --buildsessionidfile buildSessionId
 
+sleep 90
+#make the integration build in the environmet -> grouping of components (its a sealights thing)
+# need a new buildsessionId (the branch is really a new environment), this is done in line 67 of test, just a diff between branch 
+#line 68 is defining the components
+#line 69 build is similar to the scan command from js, we have a --dependecies file and sealights understands it is grouping compoentns we are not actively scanning at this time 
+# app may be a component or a set of compoents (as in an integration build)
+# NOW we will have a new "integration build" row in sealights app.
 
+echo 'Start Integration Testing'
+./node_modules/.bin/slnodejs config --tokenfile ${WORKSPACE}/sltoken.txt --appname "$JOB_NAME"_integration --branch "qa" --build "2.${BUILD_NUMBER}"
+echo '************** Component List **********'
+echo '[{"appName": "'${JOB_NAME}'","branchName": "'${BRANCH}'","buildName": "'${BUILD_NUMBER}'"},{"appName": "'${JOB_NAME}'_fe","branchName": "'${BRANCH}'",
+  "buildName": "'${BUILD_NUMBER}'"}]' > dependencies.json
+
+./node_modules/.bin/slnodejs build --tokenfile ${WORKSPACE}/sltoken.txt --buildsessionidfile buildSessionId --dependenciesFile dependencies.json --workspacepath style --scm git
 
 #deploy application
 cd ${WORKSPACE}
 echo '-SeaLights Node.js agent - Deploying Instrumented code'
 docker image build -t waltz .
 docker stop waltz || true && docker rm waltz || true
+#set up lab_id in the docker container
+#docker container run -it --publish 8081:8080 -d --name=waltz --env JAVA_OPTS="-javaagent:/root/sl-test-listener.jar -Dsl.labId=${LAB_ID}" waltz
 docker container run -it --publish 8081:8080 -d --name=waltz --env JAVA_OPTS="-javaagent:/root/sealights/sl-test-listener.jar -Dsl.labId=${LAB_ID}" waltz
 sleep 30
 docker exec waltz sh -c 'mv /usr/local/tomcat/webapps/waltz-web/WEB-INF/classes/static /usr/local/tomcat/webapps/waltz-web/WEB-INF/classes/static_bak'
+#docker exec waltz sh -c 'cp -r /root/waltz-ng/sl_dist /usr/local/tomcat/webapps/waltz-web/WEB-INF/classes/static'
 docker exec waltz sh -c 'cp -r /root/sealights/sl_dist /usr/local/tomcat/webapps/waltz-web/WEB-INF/classes/static'
 
 
 #install chrome extension - install the token
 #https://sealights.atlassian.net/wiki/spaces/SUP/pages/7869463/Installation+and+Setup+for+SeaLights+Chrome+extension
 #run manual tests
+
+
+
+
+#verify if integration build lab gets created automatically, I will have to get lab name
+#line 75 -> sets labid (in the deployed env)
+#line 60 -> because we don't have an agent
