@@ -40,11 +40,9 @@ java -jar sl-build-scanner.jar -restore -workspacepath "."
 #mvn test
 #End test session
 
-#This will be done automatically unless I am doing multiple modules
-#java -jar sl-build-scanner.jar -buildend  -ok -tokenfile sltoken.txt -buildsessionidfile buildSessionId.txt
-
-cd waltz-ng/
 echo 'Front End Testing'
+cd waltz-ng/
+
 echo 'Downloading the Node.js agent file and dependecies'
 npm i slnodejs
 npm i mocha-junit-reporter
