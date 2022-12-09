@@ -1,7 +1,7 @@
 {
   "tokenFile": "${WORKSPACE}/sltoken.txt",
   "createBuildSessionId": true,
-"appName": "${JOB_NAME}",
+  "appName": "${JOB_NAME}",
   "branchName": "${BRANCH}",
   "buildName": "${BUILD_NUMBER}",
   "packagesIncluded": "*com.khartec.waltz.*",
