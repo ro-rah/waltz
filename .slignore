@@ -1,0 +1,7 @@
+**/*test.js
+*vendor*.js
+*runtime*.js
+*inline*.js
+*polyfills*.js
+**/es5
+*-es5.js

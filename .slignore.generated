@@ -1,0 +1,4 @@
+**/*.spec.ts
+*.html
+*.png
+*.svg
