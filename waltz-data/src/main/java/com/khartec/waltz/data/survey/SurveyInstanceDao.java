@@ -26,6 +26,7 @@ import com.khartec.waltz.model.survey.*;
 import com.khartec.waltz.schema.tables.records.SurveyInstanceRecipientRecord;
 import com.khartec.waltz.schema.tables.records.SurveyInstanceRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

@@ -25,6 +25,7 @@ import com.khartec.waltz.model.database_information.ImmutableDatabaseInformation
 import com.khartec.waltz.model.database_information.ImmutableDatabaseSummaryStatistics;
 import com.khartec.waltz.schema.tables.records.DatabaseInformationRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.jooq.lambda.tuple.Tuple2;
 import org.springframework.beans.factory.annotation.Autowired;

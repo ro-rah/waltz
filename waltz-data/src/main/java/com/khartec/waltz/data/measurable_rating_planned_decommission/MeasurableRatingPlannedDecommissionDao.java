@@ -29,6 +29,7 @@ import com.khartec.waltz.model.measurable_rating_planned_decommission.ImmutableM
 import com.khartec.waltz.model.measurable_rating_planned_decommission.MeasurableRatingPlannedDecommission;
 import com.khartec.waltz.schema.tables.records.MeasurableRatingPlannedDecommissionRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.lambda.tuple.Tuple;
 import org.jooq.lambda.tuple.Tuple2;
 import org.springframework.beans.factory.annotation.Autowired;

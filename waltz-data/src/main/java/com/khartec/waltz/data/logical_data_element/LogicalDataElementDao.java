@@ -24,6 +24,7 @@ import com.khartec.waltz.model.logical_data_element.ImmutableLogicalDataElement;
 import com.khartec.waltz.model.logical_data_element.LogicalDataElement;
 import com.khartec.waltz.schema.tables.records.LogicalDataElementRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

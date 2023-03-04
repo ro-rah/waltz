@@ -25,6 +25,7 @@ import com.khartec.waltz.model.EntityReference;
 import com.khartec.waltz.model.entity_statistic.EntityStatistic;
 import com.khartec.waltz.model.entity_statistic.ImmutableEntityStatistic;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

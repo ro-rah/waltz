@@ -28,6 +28,7 @@ import com.khartec.waltz.model.measurable.ImmutableMeasurable;
 import com.khartec.waltz.model.measurable.Measurable;
 import com.khartec.waltz.schema.tables.records.MeasurableRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

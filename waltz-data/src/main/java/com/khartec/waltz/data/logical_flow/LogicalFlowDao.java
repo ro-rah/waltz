@@ -24,6 +24,7 @@ import com.khartec.waltz.model.logical_flow.ImmutableLogicalFlow;
 import com.khartec.waltz.model.logical_flow.LogicalFlow;
 import com.khartec.waltz.schema.tables.records.LogicalFlowRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.jooq.lambda.tuple.Tuple;
 import org.jooq.lambda.tuple.Tuple2;

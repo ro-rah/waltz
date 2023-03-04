@@ -31,6 +31,7 @@ import com.khartec.waltz.model.roadmap.RoadmapAndScenarioOverview;
 import com.khartec.waltz.model.scenario.Scenario;
 import com.khartec.waltz.schema.tables.records.RoadmapRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.jooq.lambda.tuple.Tuple2;
 import org.springframework.beans.factory.annotation.Autowired;

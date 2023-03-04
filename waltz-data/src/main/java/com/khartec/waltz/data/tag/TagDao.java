@@ -25,6 +25,7 @@ import com.khartec.waltz.model.tag.Tag;
 import com.khartec.waltz.schema.tables.records.TagRecord;
 import com.khartec.waltz.schema.tables.records.TagUsageRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

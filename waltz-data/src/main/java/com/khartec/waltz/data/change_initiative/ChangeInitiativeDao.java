@@ -27,6 +27,7 @@ import com.khartec.waltz.model.change_initiative.ChangeInitiativeKind;
 import com.khartec.waltz.model.change_initiative.ImmutableChangeInitiative;
 import com.khartec.waltz.schema.tables.records.ChangeInitiativeRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

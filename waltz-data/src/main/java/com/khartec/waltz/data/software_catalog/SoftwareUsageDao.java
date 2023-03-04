@@ -21,6 +21,7 @@ package com.khartec.waltz.data.software_catalog;
 import com.khartec.waltz.model.software_catalog.ImmutableSoftwareUsage;
 import com.khartec.waltz.model.software_catalog.SoftwareUsage;
 import org.jooq.*;
+import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

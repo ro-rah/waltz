@@ -28,6 +28,7 @@ import com.khartec.waltz.model.allocation.ImmutableAllocation;
 import com.khartec.waltz.model.allocation.MeasurablePercentageChange;
 import com.khartec.waltz.schema.tables.records.AllocationRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

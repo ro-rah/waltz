@@ -28,6 +28,7 @@ import com.khartec.waltz.model.physical_flow_participant.ParticipationKind;
 import com.khartec.waltz.model.physical_flow_participant.PhysicalFlowParticipant;
 import com.khartec.waltz.schema.tables.records.PhysicalFlowParticipantRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

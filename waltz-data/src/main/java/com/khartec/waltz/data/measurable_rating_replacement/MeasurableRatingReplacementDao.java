@@ -27,6 +27,7 @@ import com.khartec.waltz.model.measurable_rating_replacement.ImmutableMeasurable
 import com.khartec.waltz.model.measurable_rating_replacement.MeasurableRatingReplacement;
 import com.khartec.waltz.schema.tables.records.MeasurableRatingReplacementRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.jooq.lambda.tuple.Tuple2;
 import org.springframework.beans.factory.annotation.Autowired;

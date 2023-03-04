@@ -26,6 +26,7 @@ import com.khartec.waltz.model.EntityReference;
 import com.khartec.waltz.model.entity_relationship.*;
 import com.khartec.waltz.schema.tables.records.EntityRelationshipRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

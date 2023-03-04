@@ -24,6 +24,7 @@ import com.khartec.waltz.model.flow_diagram.FlowDiagram;
 import com.khartec.waltz.model.flow_diagram.ImmutableFlowDiagram;
 import com.khartec.waltz.schema.tables.records.FlowDiagramRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

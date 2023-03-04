@@ -26,6 +26,7 @@ import com.khartec.waltz.model.change_set.ChangeSet;
 import com.khartec.waltz.model.change_set.ImmutableChangeSet;
 import com.khartec.waltz.schema.tables.records.ChangeSetRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

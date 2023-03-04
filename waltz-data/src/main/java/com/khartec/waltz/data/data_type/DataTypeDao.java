@@ -25,6 +25,7 @@ import com.khartec.waltz.model.datatype.DataType;
 import com.khartec.waltz.model.datatype.ImmutableDataType;
 import com.khartec.waltz.schema.tables.records.DataTypeRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

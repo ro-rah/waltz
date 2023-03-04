@@ -28,6 +28,7 @@ import com.khartec.waltz.model.licence.Licence;
 import com.khartec.waltz.model.tally.Tally;
 import com.khartec.waltz.schema.tables.records.LicenceRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.exception.NoDataFoundException;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -25,6 +25,7 @@ import com.khartec.waltz.model.ImmutableEntityReference;
 import com.khartec.waltz.model.cost.*;
 import com.khartec.waltz.schema.tables.records.AssetCostRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.jooq.lambda.tuple.Tuple;
 import org.jooq.lambda.tuple.Tuple2;

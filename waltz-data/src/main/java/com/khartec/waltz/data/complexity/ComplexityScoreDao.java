@@ -23,6 +23,7 @@ import com.khartec.waltz.model.EntityKind;
 import com.khartec.waltz.model.complexity.*;
 import com.khartec.waltz.schema.tables.records.ComplexityScoreRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -27,6 +27,7 @@ import com.khartec.waltz.model.app_group.ImmutableAppGroup;
 import com.khartec.waltz.model.entity_search.EntitySearchOptions;
 import com.khartec.waltz.schema.tables.records.ApplicationGroupRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

@@ -27,6 +27,7 @@ import com.khartec.waltz.model.scenario.Scenario;
 import com.khartec.waltz.model.scenario.ScenarioType;
 import com.khartec.waltz.schema.tables.records.ScenarioRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

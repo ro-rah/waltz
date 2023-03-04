@@ -27,6 +27,7 @@ import com.khartec.waltz.model.orgunit.ImmutableOrganisationalUnit;
 import com.khartec.waltz.model.orgunit.OrganisationalUnit;
 import com.khartec.waltz.schema.tables.records.OrganisationalUnitRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

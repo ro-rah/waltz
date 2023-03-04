@@ -24,6 +24,7 @@ import com.khartec.waltz.model.physical_specification_definition.PhysicalSpecDef
 import com.khartec.waltz.model.physical_specification_definition.PhysicalSpecDefinitionType;
 import com.khartec.waltz.schema.tables.records.PhysicalSpecDefnRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

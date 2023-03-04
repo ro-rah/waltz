@@ -23,6 +23,7 @@ import com.khartec.waltz.model.notification.ImmutableNotificationSummary;
 import com.khartec.waltz.model.notification.NotificationSummary;
 import com.khartec.waltz.model.survey.SurveyInstanceStatus;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

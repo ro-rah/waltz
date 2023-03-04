@@ -27,6 +27,7 @@ import com.khartec.waltz.model.physical_flow.PhysicalFlow;
 import com.khartec.waltz.model.physical_flow.PhysicalFlowParsed;
 import com.khartec.waltz.schema.tables.records.PhysicalFlowRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

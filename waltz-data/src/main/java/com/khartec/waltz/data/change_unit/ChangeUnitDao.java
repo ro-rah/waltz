@@ -27,6 +27,7 @@ import com.khartec.waltz.model.change_unit.*;
 import com.khartec.waltz.schema.tables.records.ChangeSetRecord;
 import com.khartec.waltz.schema.tables.records.ChangeUnitRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

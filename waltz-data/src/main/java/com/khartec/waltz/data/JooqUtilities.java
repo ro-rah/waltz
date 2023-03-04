@@ -29,6 +29,7 @@ import com.khartec.waltz.model.tally.ImmutableTally;
 import com.khartec.waltz.model.tally.OrderedTally;
 import com.khartec.waltz.model.tally.Tally;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 
 import java.sql.Date;
