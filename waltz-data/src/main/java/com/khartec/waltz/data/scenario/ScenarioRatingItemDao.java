@@ -25,6 +25,7 @@ import com.khartec.waltz.model.scenario.ImmutableScenarioRatingItem;
 import com.khartec.waltz.model.scenario.ScenarioRatingItem;
 import com.khartec.waltz.schema.tables.records.ScenarioRatingItemRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

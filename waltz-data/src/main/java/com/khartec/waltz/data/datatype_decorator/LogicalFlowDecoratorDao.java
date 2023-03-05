@@ -28,6 +28,7 @@ import com.khartec.waltz.model.rating.AuthoritativenessRating;
 import com.khartec.waltz.schema.tables.LogicalFlowDecorator;
 import com.khartec.waltz.schema.tables.records.LogicalFlowDecoratorRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.jooq.lambda.function.Function2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ import static java.util.stream.Collectors.toList;
 public class LogicalFlowDecoratorDao extends DataTypeDecoratorDao {
 
 
-    private static final RecordMapper<Record, DataTypeDecorator> TO_DECORATOR_MAPPER = r -> {
+    private static final RecordMapper<org.jooq.Record, DataTypeDecorator> TO_DECORATOR_MAPPER = r -> {
         LogicalFlowDecoratorRecord record = r.into(LOGICAL_FLOW_DECORATOR);
 
         return ImmutableDataTypeDecorator.builder()

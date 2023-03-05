@@ -21,6 +21,7 @@ package com.khartec.waltz.data.entity_statistic;
 import com.khartec.waltz.model.entity_statistic.*;
 import com.khartec.waltz.schema.tables.records.EntityStatisticDefinitionRecord;
 import org.jooq.*;
+import org.jooq.Record;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
