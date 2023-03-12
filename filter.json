@@ -2,7 +2,7 @@
   "rules": [
     {
       "comments": "Test exclude behavior",
-      "classNames": [".*write"],
+      "classNames": ["*write*"],
       "excludesRegex": [
         ".*"
       ]
