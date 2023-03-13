@@ -1,6 +1,7 @@
 {
   "rules": [
     {
+      "classNames": [".*AccessLogDao"],
       "excludesExact": [
         "public int write(AccessLog)"
       ]
