@@ -2,9 +2,9 @@
   "rules": [
     {
       "classNames": [".*AccessLogDao"],
-      "excludesExact": [
-        "public *"
-      ]
+      "excludesRegex": [
+       "public .*()"
+     ]
     }
   ]
 }
