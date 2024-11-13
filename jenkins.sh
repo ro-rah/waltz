@@ -8,7 +8,7 @@ echo '************** GENERATE TOKEN FILE **********'
 #java -jar sl-build-scanner.jar -config -tokenfile ${WORKSPACE}/sltoken.txt -appname $JOB_NAME -branchname $BRANCH -buildname $BUILD_NUMBER -pi "com.khartec.*" 
 
 
-#update the java process maven is starting to include the test listener java options
+#update the java process maven is starting to include the test listener java optionss
 
 echo '************** SCAN BUILD **********'
 echo '{
